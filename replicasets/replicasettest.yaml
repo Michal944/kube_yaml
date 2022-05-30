@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicasettest
+  namespace: kube-public
+  labels:
+    etykieta: test
+    
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      etykieta: test
+  template:
+    metadata:
+      labels:
+        etykieta: test
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      - name: nginx2
+        image: nginx:latest
+        env:
+        - name: NGINX_PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
+#        command: [ "echo 'listen $NGINX_PORT;' > /etc/nginx/conf.d/default.conf " ]

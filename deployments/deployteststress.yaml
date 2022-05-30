@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stresstest
+  namespace: as
+    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      etykieta: stress
+  template:
+    metadata:
+      labels:
+        etykieta: stress
+        name: linuxstress
+    spec:
+      containers:
+      - name: stresstestcon
+        image: polinux/stress
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            memory: "150Mi"

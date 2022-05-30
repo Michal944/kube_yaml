@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginxtestvolume
+ namespace: kube-public
+spec:
+ restartPolicy: Never
+ volumes:
+  - name: vol
+    hostPath:
+     path: /var/vol
+ containers:
+ - name: nginx
+   image: nginx:latest
+   ports:
+   - containerPort: 80
+   volumeMounts:
+   - name: vol
+     mountPath: /volume
+
+
+

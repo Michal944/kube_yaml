@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntutest
+  namespace: as
+    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      etykieta: perform
+  template:
+    metadata:
+      labels:
+        etykieta: perform
+        name: linuxtest
+    spec:
+      containers:
+      - name: testcpu
+        image: michalkosik31/testcpu
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "200Mi"
+          limits:
+            cpu: "400m"
+            memory: "250Mi"
+        
